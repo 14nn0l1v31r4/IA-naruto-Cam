@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand gesture trainer - V2</title>
+  <link rel="stylesheet" href="trainer.css">
+</head>
+
+<body>
+<div class="container">
+  <h1>Jutsu Trainer</h1>
+  <p class="subtitle">Grave amostras para Clones e Rasengan, treine e exporte.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-label">Record samples</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-label">Train model</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-label">Test & export</div></div>
+  </div>
+
+  <div class="video-wrap">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <div id="rec-badge" class="recording-badge">● REC</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Coletar Amostras</div>
+    <div class="rec-row">
+      <button type="button" id="btn-rec-clone" class="rec-btn">Clone Sign <span class="key">1</span></button>
+      <button type="button" id="btn-rec-rasengan" class="rec-btn">Rasengan Sign <span class="key">2</span></button>
+      <button type="button" id="btn-rec-other" class="rec-btn">Other Poses <span class="key">3</span></button>
+    </div>
+    <div class="sample-counts">
+      Clone: <span id="count-clone">0</span> &nbsp;·&nbsp; Rasengan: <span id="count-rasengan">0</span> &nbsp;·&nbsp; Outros: <span id="count-other">0</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Treinar & Testar</div>
+    <div class="conf-bar-wrap">
+      <div class="conf-bar"><div id="conf-fill" class="conf-fill"></div></div>
+      <span id="conf-label" class="conf-label">Aguardando</span>
+    </div>
+    <button type="button" id="btn-train" class="train-btn">Treinar Modelo Multiclasse</button>
+    <p id="train-status" class="status">Grave pelo menos 50 amostras de cada para precisão.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Data & Model</div>
+    <div class="util-row">
+      <button type="button" id="btn-export-data" class="util-btn">Export Data (.json)</button>
+      <button type="button" id="btn-import-data" class="util-btn">Import Data</button>
+      <button type="button" id="btn-save-model" class="util-btn">Save Model</button>
+      <button type="button" id="btn-clear-data" class="util-btn danger">Clear All Data</button>
+    </div>
+    <input type="file" id="import-data-input" accept=".json" hidden>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+<script src="trainer.js"></script>
+</body>
+</html>
